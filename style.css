@@ -10,3 +10,27 @@ img {
 input {
     width: 400px;
 }
+/* .ui-widget{
+    display: flex;
+}
+
+.ui-widget .column2 ul{
+    flex-direction: row;
+} */
+img {
+    max-width: 50px;
+    border-radius: 25%;
+}
+.results {
+    display: flex;
+    width: 100vw
+}
+.column1 {
+    width: 15%;
+}
+.column1 ul {
+    list-style: none;
+}
+.column2 {
+    width: 85%;
+}

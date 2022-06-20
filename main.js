@@ -19,12 +19,35 @@ $(document).ready(function () {
             fetch(`http://localhost:8000/get/${ui.item.id}`)
                 .then(result => result.json())
                 .then(result => {
+                    console.log(result)
+                    let title = result.title
+                    $('#episodeTitle').text(title)
+                    let episode = result.episode
+                    $('#episode').text(episode)
+
+                    let script = result.script
+                    let scriptArr = script.split('\\n\\n')
+                    $('#script').empty()
+                    scriptArr.forEach(line => {
+                        $('#script').append(`<li>${line}</li>`)
+                    })
+
+                    let characters = []
+                    for (let i = 0; i<scriptArr.length;i++){
+                        let divide = scriptArr[i].split(': ')
+                        if (!characters.includes(divide[0]) && divide[1]){
+                            characters.push(divide[0])
+                        }
+                    }
                     $('#cast').empty()
-                    result.cast.forEach(cast =>
+                    characters.forEach(cast =>
                         {
-                            $('#cast').append(`<li>${cast}</li>`)
+                            $('#cast').append(`<li><img src="./${cast}.jpg"</li><li>${cast}</li>`)
                         })
                         $('img').attr('src',result.poster)
+                    // characters.forEach(char => {
+                    //     $('#images').append(`<li><img src="./${char}.jpg"</li>`)
+                    // })
                 })
         }
     })
